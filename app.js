@@ -29,9 +29,22 @@ function sortearAmigo() {
         return;
     }
 
-    let asignaciones = amigos.slice();
+    let asignaciones;
+    let intentos = 0;
+    const maxIntentos = 1000; // Límite para evitar bucles infinitos
+
     do {
+        asignaciones = amigos.slice();
         mezclar(asignaciones);
+        intentos++;
+
+        if (intentos > maxIntentos) {
+            alert("No se encontró una combinación válida. Inténtalo de nuevo.");
+            document.getElementById('resultadoDiv').classList.add('hidden');
+            document.getElementById('listaAmigosDiv').classList.add('hidden');
+            amigos = [];
+            return;
+        }
     } while (asignaciones.some((amigo, i) => amigo === amigos[i]));
 
     mostrarResultado(asignaciones);
