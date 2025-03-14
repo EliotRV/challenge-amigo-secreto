@@ -3,7 +3,7 @@ let amigos = [];
 function agregarAmigo() {
     const input = document.getElementById('amigo');
     const nombre = input.value.trim();
-    if (nombre === "") return; // Evita agregar nombres vacíos
+    if (nombre === "") return;
 
     amigos.push(nombre);
     actualizarLista();
@@ -14,6 +14,8 @@ function agregarAmigo() {
 function actualizarLista() {
     const lista = document.getElementById('listaAmigos');
     lista.innerHTML = "";
+    document.getElementById('listaAmigosDiv').classList.remove('hidden');
+
     amigos.forEach(amigo => {
         const li = document.createElement('li');
         li.textContent = amigo;
@@ -43,6 +45,8 @@ function mezclar(array) {
 }
 
 function mostrarResultado(asignaciones) {
+    document.getElementById('resultadoDiv').classList.remove('hidden');
+
     const resultado = document.getElementById('resultado');
     resultado.innerHTML = "";
 
